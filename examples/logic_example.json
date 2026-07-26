@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "id": "passthrough",
+      "output": {"area": "Q", "byte": 0, "bit": 0},
+      "condition": {"type": "INPUT", "area": "I", "byte": 0, "bit": 0}
+    },
+    {
+      "id": "and_gate",
+      "output": {"area": "Q", "byte": 0, "bit": 1},
+      "condition": {
+        "type": "AND",
+        "inputs": [
+          {"type": "INPUT", "area": "I", "byte": 0, "bit": 0},
+          {"type": "INPUT", "area": "I", "byte": 0, "bit": 1}
+        ]
+      }
+    },
+    {
+      "id": "conveyor_timer",
+      "output": {"area": "Q", "byte": 0, "bit": 2},
+      "condition": {
+        "type": "TON_TIMER",
+        "preset_ms": 100,
+        "input": {"type": "INPUT", "area": "I", "byte": 0, "bit": 2}
+      }
+    }
+  ]
+}

@@ -38,17 +38,17 @@ This checklist guides the construction of a minimal, working proof-of-concept (M
 
 ## Phase 2: Logic Interpreter & Basic Action Flows
 
-* [ ] **2.1 Define AST / JSON Logic Format**
-* [ ] Draft a minimal JSON schema representing simple logic blocks (e.g., `AND`, `OR`, `NOT`, `TON_TIMER`).
+* [x] **2.1 Define AST / JSON Logic Format**
+* [x] Draft a minimal JSON schema representing simple logic blocks (e.g., `AND`, `OR`, `NOT`, `TON_TIMER`).
 
 
-* [ ] **2.2 Implement Basic Bytecode / AST Interpreter**
-* [ ] Build an execution unit in C++ that parses the JSON schema and maps inputs to outputs inside `%M` / `%Q`.
-* [ ] Test simple logic evaluation: `If (%I[0] AND %I[1]) -> Set %Q[0] = 1`.
+* [x] **2.2 Implement Basic Bytecode / AST Interpreter**
+* [x] Build an execution unit in C++ that parses the JSON schema and maps inputs to outputs inside `%M` / `%Q`.
+* [x] Test simple logic evaluation: `If (%I[0] AND %I[1]) -> Set %Q[0] = 1`.
 
 
-* [ ] **2.3 Enable Hot-Reload Mechanism**
-* [ ] Add a thread-safe configuration swap mechanism so user logic can be updated between scan cycles without stopping the real-time loop.
+* [x] **2.3 Enable Hot-Reload Mechanism**
+* [x] Add a thread-safe configuration swap mechanism so user logic can be updated between scan cycles without stopping the real-time loop.
 
 
 
@@ -89,16 +89,21 @@ This checklist guides the construction of a minimal, working proof-of-concept (M
 
 ---
 
-## Phase 5: Hardware Integration & Docker Packaging
+## Phase 5: Hardware Integration & Packaging
 
 * [ ] **5.1 Integrate Linux `libgpiod` Driver**
 * [ ] Implement `LinuxGpiodDriver` inheriting from `IIODriver` to read and write physical GPIO pins on a Raspberry Pi or similar board.
 
 
-* [ ] **5.2 Create Docker Container Build**
-* [ ] Write a `Dockerfile` compiling the C++20 engine and bundling web assets into a minimal alpine or debian-slim image.
+* [ ] **5.2 Create Native Executable Build**
+* [ ] Statically link the C++20 engine (and its dependencies — `libgpiod`, web server/UI assets) into a single self-contained binary per target architecture (e.g. `armv7`, `aarch64`, `x86_64`), so it runs directly on Ubuntu/embedded Linux with no container runtime or package installation step.
+* [ ] Build a lightweight installer script/bootstrap step that drops the binary, registers the node in the hive (derives/confirms its node UID, see `Concepts/private/hive_io_forwarding.md`), and installs it as a system service (e.g. `systemd` unit) so it starts on boot with hardware access (GPIO group membership / capabilities) already granted.
+
+
+* [ ] **5.3 Create Docker Container Build (optional packaging path)**
+* [ ] Write a `Dockerfile` compiling the C++20 engine and bundling web assets into a minimal alpine or debian-slim image, for environments (x86 IPCs, CI, classroom demos) where a container runtime is preferred over the native install.
 * [ ] Create `docker-compose.yml` configured to grant `--privileged` host hardware GPIO access.
 
 
-* [ ] **5.3 MVP End-to-End Test Run**
-* [ ] Flash single board, start container, access UI over local web browser, connect a button to Input 1 and an LED to Output 1, build logic on screen, click deploy, and verify physical operation.
+* [ ] **5.4 MVP End-to-End Test Run**
+* [ ] Flash single board, install via native binary (or start container), access UI over local web browser, connect a button to Input 1 and an LED to Output 1, build logic on screen, click deploy, and verify physical operation.
