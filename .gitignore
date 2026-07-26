@@ -1,0 +1,16 @@
+# Build directory
+build/
+bin/
+lib/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.user
+*.suo
+
+# CMake auto-generated
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile

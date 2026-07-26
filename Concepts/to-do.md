@@ -8,14 +8,14 @@ This checklist guides the construction of a minimal, working proof-of-concept (M
 
 ## Phase 1: Minimal C++20 Real-Time Execution Core
 
-* [ ] **1.1 Setup Project Skeleton**
-* [ ] Initialize CMake project targeting C++20 (`-std=c++20`).
-* [ ] Configure dependencies (`pthread`, `Catch2` for testing).
+* [x] **1.1 Setup Project Skeleton**
+* [x] Initialize CMake project targeting C++20 (`-std=c++20`).
+* [x] Configure dependencies (`pthread`, `Catch2` for testing).
 
 
-* [ ] **1.2 Build Process Image Memory Map**
-* [ ] Implement `MemoryMap` struct with fixed byte arrays (`%I` [512B], `%Q` [512B], `%M` [1024B]).
-* [ ] Add thread-safe atomic access methods or double-buffering mechanisms for read/write isolation.
+* [x] **1.2 Build Process Image Memory Map**
+* [x] Implement `MemoryMap` struct with fixed byte arrays (`%I` [512B], `%Q` [512B], `%M` [1024B]).
+* [x] Add thread-safe atomic access methods or double-buffering mechanisms for read/write isolation.
 
 
 * [ ] **1.3 Build Real-Time Scan Loop Driver**
