@@ -18,15 +18,19 @@ This checklist guides the construction of a minimal, working proof-of-concept (M
 * [x] Add thread-safe atomic access methods or double-buffering mechanisms for read/write isolation.
 
 
-* [ ] **1.3 Build Real-Time Scan Loop Driver**
-* [ ] Create `SoftPlcEngine` class leveraging `std::jthread` and `std::stop_token`.
-* [ ] Implement `SCHED_FIFO` real-time thread priority setup and `mlockall()` memory locking.
-* [ ] Build cyclic timing loop using `std::chrono::steady_clock` enforcing a fixed 20ms period.
+* [x] **1.3 Build Real-Time Scan Loop Driver**
+* [x] Create `AslcEngine` class leveraging `std::jthread` and `std::stop_token`.
+* [x] Implement `SCHED_FIFO` real-time thread priority setup and `mlockall()` memory locking.
+* [x] Build cyclic timing loop using `std::chrono::steady_clock` enforcing a fixed 20ms period.
 
 
-* [ ] **1.4 Implement Mock HAL Driver**
-* [ ] Create `IIODriver` virtual C++ interface (`initialize()`, `read_inputs()`, `write_outputs()`).
-* [ ] Build `MockDriver` that toggles virtual inputs in memory (`%I`) and prints output changes (`%Q`) to the console.
+* [x] **1.4 Implement Mock HAL Driver**
+* [x] Create `IIODriver` virtual C++ interface (`initialize()`, `read_inputs()`, `write_outputs()`).
+* [x] Build `MockDriver` that toggles virtual inputs in memory (`%I`) and prints output changes (`%Q`) to the console.
+
+
+* [x] **1.5 Build & Test Automation Script**
+* [x] Create `build_and_test.py` Python script to configure, build, and run CTest test suite.
 
 
 

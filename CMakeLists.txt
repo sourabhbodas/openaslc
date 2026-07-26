@@ -12,7 +12,7 @@ find_package(Threads REQUIRED)
 include_directories(include)
 
 # Core library
-add_library(openaslc_core src/memory_map.cpp)
+add_library(openaslc_core src/memory_map.cpp src/aslc_engine.cpp src/mock_driver.cpp)
 target_include_directories(openaslc_core PUBLIC include)
 target_link_libraries(openaslc_core PUBLIC Threads::Threads)
 
@@ -31,7 +31,7 @@ FetchContent_MakeAvailable(Catch2)
 
 enable_testing()
 
-add_executable(openaslc_tests tests/test_placeholder.cpp tests/test_memory_map.cpp)
+add_executable(openaslc_tests tests/test_placeholder.cpp tests/test_memory_map.cpp tests/test_aslc_engine.cpp tests/test_mock_driver.cpp)
 target_link_libraries(openaslc_tests PRIVATE openaslc_core Catch2::Catch2WithMain)
 
 include(CTest)
