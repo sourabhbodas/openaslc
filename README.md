@@ -1,5 +1,7 @@
 # Openaslc
 
+[![CI](https://github.com/sourabhbodas/openaslc/actions/workflows/ci.yml/badge.svg)](https://github.com/sourabhbodas/openaslc/actions/workflows/ci.yml)
+
 **Open Source Agentic Software Logic Controller** designed to run efficiently on any single-board SOC (System on Chip).
 
 ---

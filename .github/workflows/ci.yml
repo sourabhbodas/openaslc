@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # FetchContent pulls nlohmann_json, httplib, the SQLite amalgamation, and
+      # Catch2 -- caching build/_deps avoids re-downloading/rebuilding all four
+      # on every run. Keyed on CMakeLists.txt since that's where every version/tag
+      # is pinned.
+      - name: Cache FetchContent dependencies
+        uses: actions/cache@v4
+        with:
+          path: build/_deps
+          key: ${{ runner.os }}-fetchcontent-${{ hashFiles('CMakeLists.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-fetchcontent-
+
+      - name: Configure
+        run: cmake -B build -S .
+
+      # --config Release is honored by Windows's multi-config Visual Studio
+      # generator and silently ignored by Linux's single-config Makefiles --
+      # one command works for both legs of the matrix.
+      - name: Build
+        run: cmake --build build --config Release -j 4
+
+      - name: Test
+        run: ctest --test-dir build -C Release --output-on-failure
