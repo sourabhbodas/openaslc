@@ -3,6 +3,9 @@ build/
 bin/
 lib/
 
+# Runtime-generated data (config archive DB, rotated logs)
+data/
+
 # IDE & Editor files
 .vscode/
 .idea/

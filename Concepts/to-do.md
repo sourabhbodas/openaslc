@@ -56,17 +56,17 @@ This checklist guides the construction of a minimal, working proof-of-concept (M
 
 ## Phase 3: Embedded Web Server & Live Canvas UI
 
-* [ ] **3.1 Integrate Embedded C++ Web Server**
-* [ ] Import header-only HTTP library (`httplib.h` or `Crow`).
-* [ ] Set up static file hosting route (`/www` folder) to serve web assets.
-* [ ] Create REST API endpoint `POST /api/deploy` to receive updated JSON logic configs.
-* [ ] Set up WebSocket endpoint `WS /ws/telemetry` to stream real-time `%I` and `%Q` byte states to the client at 10Hz.
+* [x] **3.1 Integrate Embedded C++ Web Server**
+* [x] Import header-only HTTP library (`httplib.h` or `Crow`).
+* [x] Set up static file hosting route (`/www` folder) to serve web assets.
+* [x] Create REST API endpoint `POST /api/deploy` to receive updated JSON logic configs.
+* [x] Set up WebSocket endpoint `WS /ws/telemetry` to stream real-time `%I` and `%Q` byte states to the client at 10Hz.
 
 
-* [ ] **3.2 Build MVP Web Interface Frontend**
-* [ ] Create a lightweight single-page HTML/JS application (using Rete.js, React Flow, or basic HTML5 Canvas).
-* [ ] Render basic I/O nodes and logic blocks (`Input Pin`, `Output Pin`, `AND Gate`).
-* [ ] Connect WebSocket feed to visually light up active signal wires (green for active signal, grey for off).
+* [x] **3.2 Build MVP Web Interface Frontend**
+* [x] Create a lightweight single-page HTML/JS application (using Rete.js, React Flow, or basic HTML5 Canvas).
+* [x] Render basic I/O nodes and logic blocks (`Input Pin`, `Output Pin`, `AND Gate`).
+* [x] Connect WebSocket feed to visually light up active signal wires (green for active signal, grey for off).
 
 
 
@@ -74,16 +74,16 @@ This checklist guides the construction of a minimal, working proof-of-concept (M
 
 ## Phase 4: Local Storage, SQLite Archiving & Logging
 
-* [ ] **4.1 Implement Asynchronous Ring-Buffer Logger**
-* [ ] Build a lock-free ring buffer queue for log events.
-* [ ] Implement a background thread that pops logs from the queue and writes them to a rotating local file (`/tmp/softplc.log`).
+* [x] **4.1 Implement Asynchronous Ring-Buffer Logger**
+* [x] Build a lock-free ring buffer queue for log events.
+* [x] Implement a background thread that pops logs from the queue and writes them to a rotating local file (`/tmp/softplc.log`).
 
 
-* [ ] **4.2 Integrate SQLite Version Control Archive**
-* [ ] Integrate SQLite 3 database dependency (`SQLiteCpp` or native `sqlite3`).
-* [ ] Create database schema initialization script (`commits`, `snapshots`, `deployments` tables).
-* [ ] Implement C++ methods for `commit_config(author, message, json_payload)` and `get_commit_history()`.
-* [ ] Wire UI button **"Save & Deploy"** to create a new database commit before swapping runtime logic.
+* [x] **4.2 Integrate SQLite Version Control Archive**
+* [x] Integrate SQLite 3 database dependency (`SQLiteCpp` or native `sqlite3`).
+* [x] Create database schema initialization script (`commits`, `snapshots`, `deployments` tables).
+* [x] Implement C++ methods for `commit_config(author, message, json_payload)` and `get_commit_history()`.
+* [x] Wire UI button **"Save & Deploy"** to create a new database commit before swapping runtime logic.
 
 
 

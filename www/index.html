@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>OpenASLC Live View</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>OpenASLC</h1>
+    <span id="status" class="status status-disconnected">disconnected</span>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>I/O State <span id="seq" class="seq"></span></h2>
+      <canvas id="io-canvas" width="720" height="608"></canvas>
+    </section>
+
+    <section class="panel">
+      <h2>Deploy Logic Program</h2>
+      <textarea id="deploy-input" spellcheck="false" placeholder='{"version": 1, "rules": [...]}'></textarea>
+      <div class="deploy-row">
+        <input id="deploy-author" type="text" placeholder="Author (optional)">
+        <input id="deploy-message" type="text" placeholder="Commit message (optional)">
+      </div>
+      <div class="deploy-row">
+        <button id="deploy-btn">Save &amp; Deploy</button>
+        <span id="deploy-status"></span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Commit History</h2>
+      <ul id="history-list" class="history-list"></ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
